@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MarketHub.Application/MarketHub.Application.csproj" />
+  <Project Path="MarketHub.Domain/MarketHub.Domain.csproj" />
+  <Project Path="MarketHub.Infrastructure/MarketHub.Infrastructure.csproj" />
+  <Project Path="MarketHub.Web/MarketHub.Web.csproj" />
+</Solution>
