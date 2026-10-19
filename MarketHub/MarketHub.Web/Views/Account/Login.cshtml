@@ -1,0 +1,63 @@
+﻿@model MarketHub.Web.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<section class="auth">
+    <aside class="auth__aside">
+        <h1 class="auth__headline">Your stall is waiting.</h1>
+        <p class="auth__lede">Log in to manage your listings, orders and messages in one place.</p>
+    </aside>
+
+    <div class="auth__panel">
+        <h2 class="auth__title">Log in</h2>
+        <p class="auth__sub">
+            New to MarketHub?
+            <a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">Create an account</a>
+        </p>
+
+        <form method="post" asp-action="Login" novalidate>
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="alert alert--error" role="alert"></div>
+
+            <div class="field">
+                <label asp-for="Email">Email address</label>
+                <input asp-for="Email" autocomplete="username" inputmode="email" autofocus />
+                <span asp-validation-for="Email" class="field__error"></span>
+            </div>
+
+            <div class="field">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="field__error"></span>
+            </div>
+
+            <label class="check">
+                <input asp-for="RememberMe" />
+                <span>Keep me logged in on this device</span>
+            </label>
+
+            <button type="submit" class="btn btn--primary btn--block">Log in</button>
+        </form>
+
+        @if (Model.ExternalLogins?.Any() == true)
+        {
+            <div class="divider"><span>or continue with</span></div>
+
+            @* Requires an ExternalLogin POST action on AccountController *@
+            <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" class="external">
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    <button type="submit" class="btn btn--outline btn--block" name="provider" value="@provider.Name">
+                        @provider.DisplayName
+                    </button>
+                }
+            </form>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

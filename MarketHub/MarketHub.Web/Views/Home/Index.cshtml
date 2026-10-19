@@ -1,8 +1,64 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/landing.css" />
+}
+
+<section class="hero">
+    <div class="hero__inner">
+        <h1 class="hero__title">Everything from local shops, in one cart.</h1>
+        <p class="hero__lede">
+            Browse products from independent vendors and pay once, on delivery.
+        </p>
+
+        <form class="hero__search" method="get" asp-controller="Products" asp-action="Index" role="search">
+            <label class="visually-hidden" for="hero-q">Search products</label>
+            <input id="hero-q" type="search" name="search" placeholder="Search products by name" />
+            <button type="submit" class="btn btn--primary">Search</button>
+        </form>
+
+        <p class="hero__browse">
+            <a asp-controller="Products" asp-action="Index">Browse all products</a>
+        </p>
+    </div>
+</section>
+
+<section class="land-section">
+    <div class="land-section__inner">
+        <h2 class="land-section__title">How it works</h2>
+
+        <ol class="steps">
+            <li class="steps__item">
+                <h3>Find what you need</h3>
+                <p>Search or filter by category and vendor across the whole marketplace.</p>
+            </li>
+
+            <li class="steps__item">
+                <h3>Fill one cart</h3>
+                <p>Add products from different vendors and check out once.</p>
+            </li>
+
+            <li class="steps__item">
+                <h3>Pay on delivery</h3>
+                <p>Each vendor ships its own part of your order, and you track every one.</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="vendor-band">
+    <div class="vendor-band__inner">
+        <div>
+            <h2 class="vendor-band__title">Run a shop? Sell on MarketHub.</h2>
+            <p class="vendor-band__text">
+                Register your shop, get approved, and manage your own products and orders.
+            </p>
+        </div>
+
+        <a class="btn btn--primary" asp-controller="Account" asp-action="RegisterVendor">
+            Become a vendor
+        </a>
+    </div>
+</section>
